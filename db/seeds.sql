@@ -33,7 +33,7 @@ VALUES
 
 
 
-INSERT INTO manager (id)
+INSERT INTO manager (manager_name)
 ('Mimi Vo'),
 ('David Chang'),
 ('Julia Child');
