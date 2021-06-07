@@ -20,7 +20,7 @@ VALUES
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES 
-('Mimi', 'Vo', 3, 1),
+('Mimi', 'Vo', 3, NULL),
 ('Gordon', 'Ramsey', 2, 2),
 ('Bobby', 'Flay', 6, 3),
 ('David', 'Chang', 1, 2),
@@ -33,8 +33,8 @@ VALUES
 
 
 
-INSERT INTO manager (first_name, last_name)
-('Mimi', 'Vo'),
-('David', 'Chang'),
-('Julia', 'Child');
+INSERT INTO manager (id)
+('Mimi Vo'),
+('David Chang'),
+('Julia Child');
 

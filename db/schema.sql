@@ -18,3 +18,15 @@ CREATE TABLE employee (
   role_id INT NOT NULL
   manager_id 
 );
+
+CREATE TABLE employee (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  manager_id INT NOT NULL 
+);
+
+CREATE TABLE manager (
+  manager_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  manager_name VARCHAR(30) NOT NULL,
+);
