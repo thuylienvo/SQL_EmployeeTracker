@@ -1,10 +1,10 @@
 -- ADDING BC DROPPING DB DID NOT DROP THE TABLES ASSOCIATED FOR SOME REASON...
 
 
--- DROP TABLE IF EXISTS department;
--- DROP TABLE IF EXISTS role;
--- DROP TABLE IF EXISTS employee;
--- DROP TABLE IF EXISTS manager;
+DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS manager;
 
 CREATE TABLE department (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -17,10 +17,10 @@ CREATE TABLE role (
   salary DECIMAL(10, 2) NOT NULL,
   department_id INT NOT NULL
 
-  FOREIGN KEY (department_id)
-    REFERENCES department(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+--   FOREIGN KEY (department_id)
+--     REFERENCES department(id)
+--         ON DELETE CASCADE
+--         ON UPDATE CASCADE
 );
 
 CREATE TABLE employee (
@@ -30,15 +30,15 @@ CREATE TABLE employee (
   role_id INT NOT NULL,
   manager_id INT NOT NULL
 
-  FOREIGN KEY (role_id)
-    REFERENCES role(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
+--   FOREIGN KEY (role_id)
+--     REFERENCES role(id)
+--         ON DELETE CASCADE
+--         ON UPDATE CASCADE,
 
-  FOREIGN KEY (manager_id)
-    REFERENCES manager(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+--   FOREIGN KEY (manager_id)
+--     REFERENCES manager(id)
+--         ON DELETE CASCADE
+--         ON UPDATE CASCADE
 );
 
 CREATE TABLE manager (
