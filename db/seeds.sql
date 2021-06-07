@@ -34,6 +34,7 @@ VALUES
 
 
 INSERT INTO manager (manager_name)
+VALUES
 ('Mimi Vo'),
 ('David Chang'),
 ('Julia Child');
