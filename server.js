@@ -1,8 +1,8 @@
 // PACKAGES 
 const inquirer = require('inquirer');
 const fs = require('fs');
+const functions = require('./db')
 
-const db = require('./db/connection');
 
 //======== START APPLICATION FUNCTION ======== //
 
@@ -10,7 +10,7 @@ const db = require('./db/connection');
 const initApp = () => {
     inquirer.prompt([
         {
-            // type: 'confirm',
+            type: 'confirm',
             name: 'start',
             message: 'Hello! Let\'s get to creating an Employee Tracker.',
         },
@@ -27,35 +27,34 @@ const initApp = () => {
                 'update an employee role'],
             name: 'whatToDo'
         },
-    ])
-            .then ((selection) => {
+    ]).then ((selection) => {
         if(selection.whatToDo === 'view all departments') {
             console.log('view all departments success');
-            getManager()
+            functions.getAllDepartments()
 
         } else if (selection.whatToDo  === 'view all roles') {
             console.log('view all roles success');
-            getEngineer()
+            functions.getAllRoles()
             
         } else if (selection.whatToDo  === 'view all employees') {
             console.log('view all employees success');
-            getIntern()
+            functions.getAllEmployees()
 
         }   else if (selection.whatToDo  === 'add a department') {
             console.log('add a department success');
-            getIntern()
+            // addDepartment()
 
         }   else if (selection.whatToDo  === 'add a role') {
             console.log('add a role success');
-            getIntern()
+            // addRole()
 
         }   else if (selection.whatToDo  === 'add an employee') {
             console.log('add an employee success');
-            getIntern()
+            // addEmployee()
 
         }   else if (selection.whatToDo  === 'update an employee role') {
             console.log('update an employee role success');
-            getIntern()
+            // updateEmployee()
 
         }  
     });
