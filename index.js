@@ -2,6 +2,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+const db = require('./db/connection');
+
 //======== START APPLICATION FUNCTION ======== //
 
 // PROMPT USER TO SELECT A TABLE TO VIEW OR EDIT
