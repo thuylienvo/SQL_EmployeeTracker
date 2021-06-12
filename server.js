@@ -43,7 +43,7 @@ const initApp = () => {
 
         }   else if (selection.whatToDo  === 'add a department') {
             console.log('add a department success');
-            // functions.addDepartment()
+            functions.addDepartment()
 
         }   else if (selection.whatToDo  === 'add a role') {
             console.log('add a role success');
