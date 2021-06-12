@@ -30,7 +30,7 @@ function viewAllEmployees() {
                 FROM employee
                 LEFT JOIN role ON employee.role_id = role.id
                 INNER JOIN department ON role.department_id = department.id
-                LEFT JOIN employee manager ON manager.id = employee.manager.id`,
+                LEFT JOIN employee manager ON manager.id = employee.manager_id`,
     function (err, rows) {
         if (err) throw err
         console.table(rows);
