@@ -31,9 +31,9 @@ function viewAllRoles() {
 
 function viewAllEmployees() {
     const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, 
-                department.name AS department, manager.first_name AS manager
+                department.name AS department, CONCAT(manager.first_name, ' ', manager.last_name) AS manager
                 FROM employee
-                INNER JOIN role ON employee.role_id = role.id
+                LEFT JOIN role ON employee.role_id = role.id
                 INNER JOIN department ON role.department_id = department.id
                 LEFT JOIN employee manager ON manager.id = employee.manager_id`;
     connection.query(sql, (err, rows) => {
@@ -47,7 +47,69 @@ function viewAllEmployees() {
 };
 
 //============= ADD TO TABLE () =============//
+// function addDepartment() {
+//     let response = await inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'department',
+//             message: 'Please enter the department name.',
+//             validate: departmentInput => {
+//                 if (departmentInput) {
+//                   return true;
+//                 } else {
+//                   console.log('Please enter a department.');
+//                   return false;
+//                 }
+//               }
+//         },
+//     ]).then((newDP)
+//     )
 
+//     const sql = `INSERT INTO department (name)
+//                 VALUE (?)`;
+//     connection.query(sql, (err, rows) => {
+//       if (err) {
+//         console.log(err)
+//         return;
+//       } 
+//       console.table(rows);
+//       action();
+//     })
+// };
+
+// function addRole() {
+//     const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, 
+//                 department.name AS department, manager.first_name AS manager
+//                 FROM employee
+//                 INNER JOIN role ON employee.role_id = role.id
+//                 INNER JOIN department ON role.department_id = department.id
+//                 LEFT JOIN employee manager ON manager.id = employee.manager_id`;
+//     connection.query(sql, (err, rows) => {
+//       if (err) {
+//         console.log(err)
+//         return;
+//       } 
+//       console.table(rows);
+//       action();
+//     })
+// };
+
+// function addEmployee() {
+//     const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, 
+//                 department.name AS department, manager.first_name AS manager
+//                 FROM employee
+//                 INNER JOIN role ON employee.role_id = role.id
+//                 INNER JOIN department ON role.department_id = department.id
+//                 LEFT JOIN employee manager ON manager.id = employee.manager_id`;
+//     connection.query(sql, (err, rows) => {
+//       if (err) {
+//         console.log(err)
+//         return;
+//       } 
+//       console.table(rows);
+//       action();
+//     })
+// };
 
 //============= DELETE FROM TABLE () =============//
 
@@ -84,7 +146,7 @@ function action () {
 
         }   else if (selection.whatToDo  === 'add a department') {
             console.log('add a department success');
-            // functions.addDepartment()
+            functions.addDepartment()
 
         }   else if (selection.whatToDo  === 'add a role') {
             console.log('add a role success');
