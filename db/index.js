@@ -142,4 +142,19 @@ function action () {
 
 //============= COMPLETE () =============//
 
+// function action () {
+//     inquirer.prompt({[
+
+
+        // {
+        //     type: 'confirm',
+        //     name: 'complete',
+        //     message: 'Would you like to continue making changes or viewing the employee database?'
+        // }).then(res => {
+        //     if (res.complete === true){
+        //         action();
+        //     } else {
+        //         console.log('Have a good one!')
+ 
+
 module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees};

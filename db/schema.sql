@@ -33,7 +33,7 @@ CREATE TABLE employee (
             ON UPDATE CASCADE,
   CONSTRAINT fk_manager
     FOREIGN KEY (manager_id)
-        REFERENCES manager(id)
+        REFERENCES employee(id)
             ON DELETE SET NULL
             ON UPDATE CASCADE
 );
