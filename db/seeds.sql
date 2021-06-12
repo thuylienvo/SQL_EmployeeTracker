@@ -1,3 +1,5 @@
+USE employeeTracker;
+
 INSERT INTO department (name)
 VALUES 
 ('Kitchen'),
