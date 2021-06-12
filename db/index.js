@@ -4,25 +4,25 @@ const inquirer = require('inquirer');
 
 
 //============= VIEW TABLE () =============//
-// function viewAllDepartments() {
-//     connection.query(`SELECT department.id, department.name AS department FROM department`,
-//     function (err, rows) {
-//       if (err) throw err
-//       console.table(rows);
-//       action();
-//     })
-// };
+function viewAllDepartments() {
+    connection.query(`SELECT department.id, department.name AS department FROM department`,
+    function (err, rows) {
+      if (err) throw err
+      console.table(rows);
+      action();
+    })
+};
 
-// function viewAllRoles() {
-//     connection.query(`SELECT role.id, role.title, role.salary, 
-//                 department.name AS department FROM role
-//                 LEFT JOIN department ON role.department_id = department.id`,
-//     function (err, rows) {
-//         if (err) throw err
-//         console.table(rows);
-//         action();
-//     })
-// };
+function viewAllRoles() {
+    connection.query(`SELECT role.id, role.title, role.salary, 
+                department.name AS department FROM role
+                LEFT JOIN department ON role.department_id = department.id`,
+    function (err, rows) {
+        if (err) throw err
+        console.table(rows);
+        action();
+    })
+};
 
 function viewAllEmployees() {
     connection.query(`SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, 
@@ -142,4 +142,4 @@ function action () {
 
 //============= COMPLETE () =============//
 
-module.exports = { viewAllEmployees};
+module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees};
