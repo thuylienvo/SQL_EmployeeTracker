@@ -32,9 +32,10 @@ function viewAllRoles() {
 function viewAllEmployees() {
     const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, 
                 department.name AS department FROM employee
+                CONCAT(manager.first_name, ' ', manager.last_name) FROM manager
                 LEFT JOIN role ON employee.role_id = role.id
                 INNER JOIN department ON role.department_id = department.id
-                LEFT JOIN CONCAT(manager.first_name, ' ', manager.last_name) AS manager`;
+                LEFT JOIN (SELECT CONCAT(manager.first_name, ' ', manager.last_name)) FROM manager ON manager.id = employee.manager_id`;
     connection.query(sql, (err, rows) => {
       if (err) {
         console.log(err)
