@@ -20,22 +20,14 @@ VALUES
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES 
-('Mimi', 'Vo', 3, 1),
-('Gordon', 'Ramsey', 2, 3),
-('Bobby', 'Flay', 6, 3),
-('David', 'Chang', 1, 2),
+('Mimi', 'Vo', 3, NULL),
+('Gordon', 'Ramsey', 2, 10),
+('Bobby', 'Flay', 6, 10),
+('David', 'Chang', 1, 10),
 ('Anthony', 'Bordain', 2, 2),
-('Masahuru', 'Morimoto', 7, 3),
-('Eric', 'Ripert', 5, 3),
+('Masahuru', 'Morimoto', 7, 10),
+('Eric', 'Ripert', 5, 10),
 ('Aaron', 'Sanchez', 2, 2),
-('Andrew', 'Zimmern', 6, 3),
+('Andrew', 'Zimmern', 6, 10),
 ('Julia', 'Child', 4, 1);
-
-
-
-INSERT INTO manager (manager_name)
-VALUES
-('Mimi Vo'),
-('David Chang'),
-('Julia Child');
 
