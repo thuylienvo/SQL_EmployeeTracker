@@ -101,7 +101,7 @@ function viewAllEmployees() {
 
 var roleArr =[]; 
 function selectRole() {
-    connection.query('SELECT * FROM role', 
+    connection.query('SELECT role.title FROM role', 
     function(err, res) {
         if (err) throw err 
         for (var i = 0; i < res.length; i++) {
@@ -113,7 +113,7 @@ function selectRole() {
 
 var managerArr =[]; 
 function selectManager() {
-    connection.query('SELECT * FROM first_name, last_name FROM employee WHERE manager IS NULL', 
+    connection.query('SELECT employee.first_name, employee.last_name FROM employee WHERE employee.manager_id IS NULL', 
     function(err, res) {
         if (err) throw err 
         for (var i = 0; i < res.length; i++) {
@@ -210,7 +210,7 @@ function addEmployee() {
               }
         },
         {
-            type: 'input',
+            type: 'choice',
             name: 'manager',
             message: 'Who is their manager?',
             choices: selectManager(),
