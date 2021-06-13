@@ -154,8 +154,10 @@ function addDepartment() {
 };
 
 
-function addEmployee() {
-    inquirer.prompt([
+async function addEmployee() {
+    const roles = await selectRole();
+    const manager = await selectManager();
+        inquirer.prompt([
         {
             type: 'input',
             name: 'firstname',
