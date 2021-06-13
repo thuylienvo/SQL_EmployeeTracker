@@ -113,7 +113,8 @@ function addDepartment() {
                 }
               }
         },
-    ]).then(function(newDP) {
+
+    ]).then((newDP) => {
         var query = connection.query(`INSERT INTO department(name) SET (?)`,
         {
             name: newDP.input
@@ -123,8 +124,9 @@ function addDepartment() {
             console.table(newDP);
             action();
         });
-    });
+});
 };
+
 
 // function addRole() {
 //     connection.query(`SELECT department.id, department.name AS department FROM department`,
@@ -212,6 +214,6 @@ function completed () {
                 console.log('Catch you later!')
             }
         });
-        };
+    };
 // FUNCTION TO KICKOFF APP
 initApp();
