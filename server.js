@@ -68,7 +68,7 @@ function viewAllDepartments() {
     function (err, rows) {
       if (err) throw err
       console.table(rows);
-      action();
+      completed();
     })
 };
 
@@ -79,7 +79,7 @@ function viewAllRoles() {
     function (err, rows) {
         if (err) throw err
         console.table(rows);
-        action();
+        completed ()
     })
 };
 
@@ -93,7 +93,7 @@ function viewAllEmployees() {
     function (err, rows) {
         if (err) throw err
         console.table(rows);
-        action();
+        completed ()
     })
 };
 
@@ -201,19 +201,20 @@ function action () {
 
 //============= COMPLETE () =============//
 
-// function action () {
-//     inquirer.prompt({[
-
-
-        // {
-        //     type: 'confirm',
-        //     name: 'complete',
-        //     message: 'Would you like to continue making changes or viewing the employee database?'
-        // }).then(res => {
-        //     if (res.complete === true){
-        //         action();
-        //     } else {
-        //         console.log('Have a good one!')
-
+function completed () {
+    inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'complete',
+            message: 'Would you like to continue making changes or viewing the employee database?'
+        },
+    ]).then((res) => {
+            if (res.complete === true){
+                action();
+            } else {
+                console.log('Catch you later!')
+            }
+        });
+        };
 // FUNCTION TO KICKOFF APP
 initApp();
