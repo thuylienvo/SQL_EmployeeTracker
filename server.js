@@ -52,7 +52,7 @@ const initApp = () => {
 
         }   else if (selection.whatToDo  === 'add an employee') {
             console.log('add an employee success');
-            // addEmployee()
+            addEmployee()
 
         }   else if (selection.whatToDo  === 'update an employee role') {
             console.log('update an employee role success');
@@ -99,6 +99,29 @@ function viewAllEmployees() {
 
 //============= ARRAYS =============//
 
+var roleArr =[]; 
+function selectRole() {
+    connection.query('SELECT * FROM role', 
+    function(err, res) {
+        if (err) throw err 
+        for (var i = 0; i < res.length; i++) {
+            roleArr.push(res[i].title)
+        }
+    });
+    return roleArr;
+};
+
+var managerArr =[]; 
+function selectManager() {
+    connection.query('SELECT * FROM first_name, last_name FROM employee WHERE manager IS NULL', 
+    function(err, res) {
+        if (err) throw err 
+        for (var i = 0; i < res.length; i++) {
+            managerArr.push(res[i].first_name);
+        }
+    });
+    return managerArr;
+};
 
 //============= ADD TO TABLE () =============//
 function addDepartment() {
@@ -125,76 +148,103 @@ function addDepartment() {
         function(err) {
             if (err) throw err
             console.table(newDP);
-            action();
+            completed ()
         });
     });
 };
 
 
-// function addRole() {
-    // inquirer.prompt([
-    //     {
-    //         type: 'input',
-    //         name: 'firstname',
-    //         message: 'Enter employee\'s first name.',
-    //         validate: firstname => {
-    //             if (firstname) {
-    //               return true;
-    //             } else {
-    //               console.log('You must enter a first name.');
-    //               return false;
-    //             }
-    //           }
-    //     },
-    //     {
-    //         type: 'input',
-    //         name: 'lastname',
-    //         message: 'Enter employee\'s last name.',
-    //         validate: lastname => {
-    //             if (lastname) {
-    //               return true;
-    //             } else {
-    //               console.log('You must enter a last name.');
-    //               return false;
-    //             }
-    //           }
-    //     },
-    //     {
-    //         type: 'choice',
-    //         name: 'role',
-    //         message: 'What is their role?',
-    //         choices: selectRole(),
-    //         validate: role => {
-    //             if (role) {
-    //               return true;
-    //             } else {
-    //               console.log('You must select a role.');
-    //               return false;
-    //             }
-    //           }
-    //     },
-    //     {
-    //         type: 'input',
-    //         name: 'salary',
-    //         message: 'What is their salary?',
-    //         validate: salary => {
-    //             if (salary) {
-    //               return true;
-    //             } else {
-    //               console.log('You must select a role.');
-    //               return false;
-    //             }
-    //           }
-    //     },
-//     connection.query(`SELECT department.id, department.name AS department FROM department`,
-//     function (err, rows) {
-//       if (err) throw err
-//       console.table(rows);
-//       action();
-//     })
-// };
+function addEmployee() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstname',
+            message: 'Enter employee\'s first name.',
+            validate: firstname => {
+                if (firstname) {
+                  return true;
+                } else {
+                  console.log('You must enter a first name.');
+                  return false;
+                }
+              }
+        },
+        {
+            type: 'input',
+            name: 'lastname',
+            message: 'Enter employee\'s last name.',
+            validate: lastname => {
+                if (lastname) {
+                  return true;
+                } else {
+                  console.log('You must enter a last name.');
+                  return false;
+                }
+              }
+        },
+        {
+            type: 'choice',
+            name: 'role',
+            message: 'What is their role?',
+            choices: selectRole(),
+            validate: role => {
+                if (role) {
+                  return true;
+                } else {
+                  console.log('You must select a role.');
+                  return false;
+                }
+              }
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'What is their salary?',
+            validate: salary => {
+                if (salary) {
+                  return true;
+                } else {
+                  console.log('You must enter a salary.');
+                  return false;
+                }
+              }
+        },
+        {
+            type: 'input',
+            name: 'manager',
+            message: 'Who is their manager?',
+            choices: selectManager(),
+            validate: manager => {
+                if (manager) {
+                  return true;
+                } else {
+                  console.log('You must select a manager.');
+                  return false;
+                }
+              }
+        },
+    ]).then((addNewRole) => {
+        var roleId = selectRole().indexOf(addNewRole.role) + 1;
+        var managerId = selectManager().indexOf(addNewRole.choices) + 1
+        connection.query(`INSERT INTO employee SET ?`,
+        {
+            first_name: addNewRole.firstname,
+            last_name: addNewRole.lastname,
+            role: roleId,
+            salary: addNewRole.salary,
+            manager: managerId
 
-// function addEmployee() {
+        },
+        function (err, addNewRole) {
+          if (err) throw err
+          console.table(addNewRole);
+          completed ()
+        });
+
+    });
+};
+
+// function addRole() {
 //     connection.query(`SELECT department.id, department.name AS department FROM department`,
 //     function (err, rows) {
 //       if (err) throw err
@@ -255,7 +305,7 @@ function action () {
 
         }   else if (selection.whatToDo  === 'add an employee') {
             console.log('add an employee success');
-            // addEmployee()
+            addEmployee()
 
         }   else if (selection.whatToDo  === 'update an employee role') {
             console.log('update an employee role success');

@@ -25,11 +25,11 @@ VALUES
 ('Mimi', 'Vo', 3, NULL),
 ('Gordon', 'Ramsey', 2, 10),
 ('Bobby', 'Flay', 6, 10),
-('David', 'Chang', 1, 10),
+('David', 'Chang', 1, NULL),
 ('Anthony', 'Bordain', 2, 2),
 ('Masahuru', 'Morimoto', 7, 10),
 ('Eric', 'Ripert', 5, 10),
 ('Aaron', 'Sanchez', 2, 2),
 ('Andrew', 'Zimmern', 6, 10),
-('Julia', 'Child', 4, 1);
+('Julia', 'Child', 4, NULL);
 
