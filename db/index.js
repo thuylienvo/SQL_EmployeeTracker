@@ -1,3 +1,6 @@
+//======= THIS DID NOT WORK (RESEARCHING)- MOVED TO SERVER PER ASKBCS =======//
+
+
 // const connection = require('./connection');
 // const inquirer = require('inquirer');
 // const mysql = require('mysql2/promise');

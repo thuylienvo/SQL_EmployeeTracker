@@ -44,7 +44,7 @@ const initApp = () => {
 
         }   else if (selection.whatToDo  === 'add a department') {
             console.log('add a department success');
-            // addDepartment()
+            addDepartment()
 
         }   else if (selection.whatToDo  === 'add a role') {
             console.log('add a role success');
@@ -97,6 +97,9 @@ function viewAllEmployees() {
     })
 };
 
+//============= ARRAYS =============//
+
+
 //============= ADD TO TABLE () =============//
 function addDepartment() {
     inquirer.prompt([
@@ -104,8 +107,8 @@ function addDepartment() {
             type: 'input',
             name: 'department',
             message: 'Please enter a department name.',
-            validate: departmentInput => {
-                if (departmentInput) {
+            validate: department => {
+                if (department) {
                   return true;
                 } else {
                   console.log('You must enter a department name.');
@@ -115,20 +118,74 @@ function addDepartment() {
         },
 
     ]).then((newDP) => {
-        var query = connection.query(`INSERT INTO department(name) SET (?)`,
+        var query = connection.query(`INSERT INTO department SET ?`,
         {
-            name: newDP.input
+            name: newDP.department
         },
         function(err) {
             if (err) throw err
             console.table(newDP);
             action();
         });
-});
+    });
 };
 
 
 // function addRole() {
+    // inquirer.prompt([
+    //     {
+    //         type: 'input',
+    //         name: 'firstname',
+    //         message: 'Enter employee\'s first name.',
+    //         validate: firstname => {
+    //             if (firstname) {
+    //               return true;
+    //             } else {
+    //               console.log('You must enter a first name.');
+    //               return false;
+    //             }
+    //           }
+    //     },
+    //     {
+    //         type: 'input',
+    //         name: 'lastname',
+    //         message: 'Enter employee\'s last name.',
+    //         validate: lastname => {
+    //             if (lastname) {
+    //               return true;
+    //             } else {
+    //               console.log('You must enter a last name.');
+    //               return false;
+    //             }
+    //           }
+    //     },
+    //     {
+    //         type: 'choice',
+    //         name: 'role',
+    //         message: 'What is their role?',
+    //         choices: selectRole(),
+    //         validate: role => {
+    //             if (role) {
+    //               return true;
+    //             } else {
+    //               console.log('You must select a role.');
+    //               return false;
+    //             }
+    //           }
+    //     },
+    //     {
+    //         type: 'input',
+    //         name: 'salary',
+    //         message: 'What is their salary?',
+    //         validate: salary => {
+    //             if (salary) {
+    //               return true;
+    //             } else {
+    //               console.log('You must select a role.');
+    //               return false;
+    //             }
+    //           }
+    //     },
 //     connection.query(`SELECT department.id, department.name AS department FROM department`,
 //     function (err, rows) {
 //       if (err) throw err
@@ -146,6 +203,16 @@ function addDepartment() {
 //     })
 // };
 
+//============= UPDATE TABLE () =============//
+
+// function updateEmployee() {
+//     connection.query(`SELECT department.id, department.name AS department FROM department`,
+//     function (err, rows) {
+//       if (err) throw err
+//       console.table(rows);
+//       action();
+//     })
+// };
 
 
 //============= CONTIINUE () =============//
@@ -215,5 +282,6 @@ function completed () {
             }
         });
     };
+
 // FUNCTION TO KICKOFF APP
 initApp();
