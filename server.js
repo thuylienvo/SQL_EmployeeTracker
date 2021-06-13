@@ -98,35 +98,33 @@ function viewAllEmployees() {
 };
 
 //============= ADD TO TABLE () =============//
-// function addDepartment() {
-//     let response = await inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'department',
-//             message: 'Please enter the department name.',
-//             validate: departmentInput => {
-//                 if (departmentInput) {
-//                   return true;
-//                 } else {
-//                   console.log('Please enter a department.');
-//                   return false;
-//                 }
-//               }
-//         },
-//     ]).then((newDP)
-//     )
-
-//     const sql = `INSERT INTO department (name)
-//                 VALUE (?)`;
-//     connection.query(sql, (err, rows) => {
-//       if (err) {
-//         console.log(err)
-//         return;
-//       } 
-//       console.table(rows);
-//       action();
-//     })
-// };
+function addDepartment() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'department',
+            message: 'Please enter a department name.',
+            validate: departmentInput => {
+                if (departmentInput) {
+                  return true;
+                } else {
+                  console.log('You must enter a department name.');
+                  return false;
+                }
+              }
+        },
+    ]).then(function(newDP) {
+        var query = connection.query(`INSERT INTO department(name) SET (?)`,
+        {
+            name: newDP.input
+        },
+        function(err) {
+            if (err) throw err
+            console.table(newDP);
+            action();
+        });
+    });
+};
 
 // function addRole() {
 //     connection.query(`SELECT department.id, department.name AS department FROM department`,
@@ -146,7 +144,6 @@ function viewAllEmployees() {
 //     })
 // };
 
-//============= DELETE FROM TABLE () =============//
 
 
 //============= CONTIINUE () =============//
@@ -181,7 +178,7 @@ function action () {
 
         }   else if (selection.whatToDo  === 'add a department') {
             console.log('add a department success');
-            // addDepartment()
+            addDepartment()
 
         }   else if (selection.whatToDo  === 'add a role') {
             console.log('add a role success');
